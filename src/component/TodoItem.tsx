@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 
 type TodoListArrayType = {
-    id: number
+    id: string
     title: string
     isDone: boolean
 }
@@ -9,21 +9,22 @@ type TodoListArrayType = {
 type TodoListType = {
     task: Array<TodoListArrayType>
     subtitle?: string
-    removeTask: Function
+    removeTask: (id: string) => void
 }
 
 export const TodoItem: FC<TodoListType> = (props) => {
-    // debugger
+
+    const removeTask = (tID:string) => {
+        props.removeTask(tID)
+    }
     return (
 
         <div>
-            {props.task.map(el => {
+            {props.task.map(t => {
                 return (
-                    <div key={el.id}>
-                        <li><input type="checkbox" checked={el.isDone}/> <span>{el.title}</span></li>
-                        <button onClick={() => {
-                            props.removeTask(el.id)}}>X
-                        </button>
+                    <div key={t.id}>
+                        <li><input type="checkbox" checked={t.isDone}/> <span>{t.title}</span></li>
+                        <button onClick={() => removeTask(t.id)}>X</button>
                     </div>
                 )
             })}
