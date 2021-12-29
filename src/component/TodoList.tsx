@@ -1,6 +1,8 @@
 import React, {ChangeEvent, FC, KeyboardEvent, useState} from 'react';
 import {TodoItem} from './TodoItem';
 import {FilterValuesType} from '../App';
+import './../App.scss'
+import {FullInput} from './FullInput';
 
 
 type TodoListArrayType = {
@@ -16,57 +18,49 @@ type TodoListType = {
     removeTask: (id: string) => void
     changeFilter: (value: FilterValuesType) => void
     addTask: (title: string) => void
+    changeStatus: (checked: boolean, id: string) => void
+    filter: FilterValuesType
 }
 
 
 export const TodoList: FC<TodoListType> = (
-    {task, subtitle, removeTask, changeFilter, addTask}) => {
+    {task, subtitle, changeFilter, removeTask, addTask, ...props}) => {
 
     const [title, setTitle] = useState('')
 
-    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.currentTarget.value)
-    }
 
-
-    const addingTasks = () => {
-        if (title.length > 0) {
-            addTask(title)
-            setTitle('')
-        }
-    }
-// Enter addTask
-    const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') {
-            addingTasks()
-        }
-    }
-
-    //рефакторинг
     const filteringButtons = (eventFilter: FilterValuesType) => {
         changeFilter(eventFilter)
     }
-    // const filteringActiveButtons = () => {
-    //     changeFilter('active')
-    // }
-    // const filteringCompletedButtons = () => {
-    //     changeFilter('completed')
-    // }
+
     return (
         <div>
 
             <h3>{subtitle}</h3>
             <div>
-                <input onChange={onChangeHandler} value={title} onKeyPress={onKeyPressHandler}/>
-                <button onClick={addingTasks}>+</button>
+                <FullInput addTask={addTask} setTitle={setTitle} title={title}/>
             </div>
             <ul>
-                <TodoItem task={task} removeTask={removeTask}/>
+                <TodoItem
+                    task={task}
+                    removeTask={removeTask}
+                    changeStatus={props.changeStatus}
+                />
             </ul>
             <div>
-                <button onClick={() => filteringButtons('all')}>All</button>
-                <button onClick={() => filteringButtons('active')}>Active</button>
-                <button onClick={() => filteringButtons('completed')}>Completed</button>
+                <button className={props.filter === 'all' ? 'activeFilter' : ''}
+                        onClick={() => filteringButtons('all')}>all
+                </button>
+                <button className={props.filter === 'active' ? 'activeFilter' : ''}
+                        onClick={() => filteringButtons('active')}>active
+                </button>
+                <button className={props.filter === 'completed' ? 'activeFilter' : ''}
+                        onClick={() => filteringButtons('completed')}>completed
+                </button>
+
+                {/*<Button name={'all'} callBack={() => filteringButtons('all')}/>*/}
+                {/*<Button name={'active'} callBack={() => filteringButtons('active')}/>*/}
+                {/*<Button name={'completed'} callBack={() => filteringButtons('completed')}/>*/}
             </div>
 
         </div>

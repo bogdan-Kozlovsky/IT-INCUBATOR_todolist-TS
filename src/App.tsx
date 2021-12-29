@@ -16,25 +16,11 @@ function App() {
 
     const addTask = (title: string) => {
         let newTitle = {id: v1(), title: title, isDone: false}
-        setTasks([newTitle, ...tasks])
+        setTasks([...tasks, newTitle])
     }
 
 
     let [filter, setFilter] = useState<FilterValuesType>('all')
-
-    // const removeTask = (id: number) => {
-    //     // мы должно отфильровать только те таски у которых id не равен на ту таску на которую мы нажали
-    //     debugger
-    //     let newTask = task1.filter((t) => {
-    //         return (t.id !== id)
-    //         // t это каждый елемент массива task1
-    //
-    //
-    //         //если  task.id не равна id , то она проходит в истину, если она равна то в ложь
-    //     })
-    //     console.log(newTask)
-    //
-    // }
 
 
     const removeTask = (id: string) => {
@@ -48,10 +34,16 @@ function App() {
 
     let tasksForTodoList = tasks
     if (filter === 'completed') {
-        tasksForTodoList = tasks.filter(t => t.isDone === true)
+        tasksForTodoList = tasks.filter(t => t.isDone)
     } else if (filter === 'active') {
-        tasksForTodoList = tasks.filter(t => t.isDone === false)
+        tasksForTodoList = tasks.filter(t => !t.isDone)
     }
+
+    // function to change the status
+    const changeStatus = (checked: boolean, id: string) => {
+        setTasks([...tasks.map(t => t.id === id ? {...t, isDone: checked} : t)])
+    }
+
 
     return (
         <div className="App">
@@ -63,6 +55,8 @@ function App() {
                     removeTask={removeTask}
                     changeFilter={changeFilter}
                     addTask={addTask}
+                    changeStatus={changeStatus}
+                    filter={filter}
                 />
             </div>
         </div>

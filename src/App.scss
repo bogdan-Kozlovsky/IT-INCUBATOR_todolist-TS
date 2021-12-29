@@ -16,3 +16,18 @@
 }
 
 
+.error {
+  border: red 2px solid;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.fullInput__box{
+  display: flex;
+}
+
+.activeFilter {
+  background-color: aquamarine;
+}
