@@ -43,7 +43,7 @@ function App() {
     const changeStatus = (checked: boolean, id: string) => {
         setTasks([...tasks.map(t => t.id === id ? {...t, isDone: checked} : t)])
     }
-
+    console.log('test')
 
     return (
         <div className="App">
