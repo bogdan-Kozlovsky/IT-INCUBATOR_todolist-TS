@@ -1,38 +1,44 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import './../App.scss'
 
-
-type InputPropsType = {
-    setTitle: (title: string) => void
-    addingTasks: () => void
-    title: string
-    error: boolean
-    setError: (error: boolean) => void
+type InputType = {
+    callback: (title: string) => void
 }
-export const Input = (props: InputPropsType) => {
-
-    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        props.setTitle(event.currentTarget.value)
-        props.setError(false)
+export const Input = ({...props}: InputType) => {
+    let [title, setTitle] = useState("")
+    let [error, setError] = useState<string | null>(null)
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
     }
 
-    const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') {
-            props.addingTasks()
+
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        setError(null);
+        if (e.charCode === 13) {
+            addTask();
         }
-        props.setError(true)
-
     }
 
+
+
+    const addTask = () => {
+        let newTitle = title.trim();
+        if (newTitle !== "") {
+            props.callback(newTitle);
+            setTitle("");
+        } else {
+            setError("Title is required");
+        }
+    }
     return (
         <div>
-            <input
-                className={props.error ? 'error' : ''}
-                onChange={onChangeHandler}
-                value={props.title}
-                onKeyPress={onKeyPressHandler}
-                type="text"></input>
-            {props.error && <p className={'errorMessage'}>Title is required!!</p>}
+            <input value={title}
+                   onChange={onChangeHandler}
+                   onKeyPress={onKeyPressHandler}
+                   className={error ? "error" : ""}
+            />
+            <button onClick={addTask}>+</button>
+            {error && <div className="error-message">{error}</div>}
         </div>
-    )
+    );
 };
+
