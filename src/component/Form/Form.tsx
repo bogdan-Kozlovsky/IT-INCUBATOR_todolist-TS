@@ -1,15 +1,25 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
-type InputType = {
-    callback: (title: string) => void
+type FormType = {
+    callBack: (newTitle: string) => void
 }
-export const Input = ({...props}: InputType) => {
+export const Form = ({...props}: FormType) => {
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
+
+
+    const addTask = () => {
+        let newTitle = title.trim();
+        if (newTitle !== "") {
+            props.callBack(newTitle);
+            setTitle("");
+        } else {
+            setError("Title is required");
+        }
+    }
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
-
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
@@ -18,17 +28,6 @@ export const Input = ({...props}: InputType) => {
         }
     }
 
-
-
-    const addTask = () => {
-        let newTitle = title.trim();
-        if (newTitle !== "") {
-            props.callback(newTitle);
-            setTitle("");
-        } else {
-            setError("Title is required");
-        }
-    }
     return (
         <div>
             <input value={title}

@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
-import {Input} from "./component/Input";
+import {EditableSpan} from "./component/EditableSpan";
+import {Form} from "./component/Form/Form";
 
 export type FilterValuesType = "all" | "active" | "completed";
 type TodolistType = {
@@ -89,20 +90,21 @@ function App() {
     const updateTask = (todolistId: string, taskId: string, title: string) => {
         setTasks({...tasks, [todolistId]: tasks[todolistId].map(m => m.id === taskId ? {...m, title} : m)})
     }
+
     const updateTitle = (todolistId: string, title: string) => {
         setTodolists(todolists.map(m => m.id === todolistId ? {...m, title} : m))
     }
 
-    const addTodoList = (title: string) => {
-        let newId = v1();
+    const addTodolist = (title: string) => {
+        let newId = v1()
         setTodolists([{id: newId, title: title, filter: "all"}, ...todolists])
-        setTasks({
-            ...tasks, [newId]: []
-        })
+        setTasks({...tasks, [newId]: []})
+
     }
+
     return (
         <div className="App">
-            <Input callback={addTodoList}/>
+            <Form callBack={addTodolist}/>
             {
                 todolists.map(tl => {
                     let allTodolistTasks = tasks[tl.id];

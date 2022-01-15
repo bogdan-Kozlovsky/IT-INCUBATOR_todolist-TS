@@ -1,7 +1,8 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterValuesType} from './App';
+import {Button} from "./component/Button";
 import {EditableSpan} from "./component/EditableSpan";
-import {Input} from "./component/Input";
+import {Form} from "./component/Form/Form";
 
 export type TaskType = {
     id: string
@@ -19,88 +20,52 @@ type PropsType = {
     changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
     removeTodolist: (id: string) => void
     filter: FilterValuesType
-    updateTask: (todolistId: string, taskId: string, title: string) => void
+    updateTask: (todolistId: string, tId: string, title: string) => void
     updateTitle: (todolistId: string, title: string) => void
 }
 
-
 export function Todolist(props: PropsType) {
-    // let [title, setTitle] = useState("")
-    // let [error, setError] = useState<string | null>(null)
-
-    // const addTask = () => {
-    //     let newTitle = title.trim();
-    //     if (newTitle !== "") {
-    //         props.addTask(newTitle, props.id);
-    //         setTitle("");
-    //     } else {
-    //         setError("Title is required");
-    //     }
-    // }
-
-    // const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    //     setTitle(e.currentTarget.value)
-    // }
-
-    // const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    //     setError(null);
-    //     if (e.charCode === 13) {
-    //         addTask();
-    //     }
-    // }
 
     const removeTodolist = () => props.removeTodolist(props.id)
 
     const onAllClickHandler = () => props.changeFilter("all", props.id);
     const onActiveClickHandler = () => props.changeFilter("active", props.id);
     const onCompletedClickHandler = () => props.changeFilter("completed", props.id);
-    const onClickHandler = (tId: string) => props.removeTask(tId, props.id)
-    const onChangeHandlerInput = (tId: string, event: ChangeEvent<HTMLInputElement>) => {
-        let newIsDoneValue = event.currentTarget.checked;
-        props.changeTaskStatus(tId, newIsDoneValue, props.id);
-    }
 
+    const onClickHandler = (tId: string) => props.removeTask(tId, props.id)
+
+    const onChangeHandlerInput = (tID: string, e: ChangeEvent<HTMLInputElement>) => {
+        let newIsDoneValue = e.currentTarget.checked;
+        props.changeTaskStatus(tID, newIsDoneValue, props.id);
+    }
 
     const callBackHandlerForEditableSpan = (tId: string, title: string) => {
         props.updateTask(props.id, tId, title)
     }
 
-    const callBackHandlerTitle = (title: string) => {
+    const callBackHandlerForEditableForTitle = (title: string) => {
         props.updateTitle(props.id, title)
     }
 
-    const callBackHandlerForInput = (title: string) => {
-        props.addTask(title, props.id)
+    const callBackHandlerForInput = (newTitle: string) => {
+        props.addTask(newTitle, props.id)
     }
-
     return <div>
-        <EditableSpan title={props.title} callBack={(title) => callBackHandlerTitle(title)}/>
-        <button onClick={removeTodolist}>x</button>
-
         <div>
-            <Input callback={callBackHandlerForInput}/>
-            {/*<input value={title}*/}
-            {/*       onChange={onChangeHandler}*/}
-            {/*       onKeyPress={onKeyPressHandler}*/}
-            {/*       className={error ? "error" : ""}*/}
-            {/*/>*/}
-            {/*<button onClick={addTask}>+</button>*/}
-            {/*{error && <div className="error-message">{error}</div>}*/}
+            <EditableSpan title={props.title} callBack={(title) => callBackHandlerForEditableForTitle(title)}/>
+            <button onClick={removeTodolist}>x</button>
         </div>
+
+        <Form callBack={(newTitle) => callBackHandlerForInput(newTitle)}/>
+
         <ul>
             {
                 props.tasks.map(t => {
                     return <li key={t.id} className={t.isDone ? "is-done" : ""}>
-                        <input type="checkbox" onChange={(event) => onChangeHandlerInput(t.id, event)}
-                               checked={t.isDone}/>
-
-
+                        <input type="checkbox" onChange={(e) => onChangeHandlerInput(t.id, e)} checked={t.isDone}/>
                         <EditableSpan title={t.title}
                                       callBack={(title) => callBackHandlerForEditableSpan(t.id, title)}/>
-
-
-                        {/*title всплития, если нам нужно в компонент EditableSpan title*/}
-                        <button onClick={() => onClickHandler(t.id)}>x</button>
+                        <Button callBack={() => onClickHandler(t.id)} name={'X'}/>
                     </li>
                 })
             }
