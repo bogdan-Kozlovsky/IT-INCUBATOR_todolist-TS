@@ -1,6 +1,6 @@
 import {TasksStateType} from "../App";
 import {v1} from "uuid";
-import {AddTodolistActionType} from "./todolists-reducer";
+import {AddTodolistActionType, todolistId1, todolistId2} from "./todolists-reducer";
 
 
 type RemoveTaskACType = {
@@ -40,7 +40,20 @@ type GlobalType =
     | AddTodolistActionType
     | RemoveTodolistACType
 
-export const tasksReducer = (state: TasksStateType, action: GlobalType): TasksStateType => {
+
+let initialState: TasksStateType = {
+    [todolistId1]: [
+        {id: v1(), title: "HTML&CSS", isDone: true},
+        {id: v1(), title: "JS", isDone: true}
+    ],
+    [todolistId2]: [
+        {id: v1(), title: "Milk", isDone: true},
+        {id: v1(), title: "React Book", isDone: true}
+    ]
+}
+
+
+export const tasksReducer = (state = initialState, action: GlobalType): TasksStateType => {
     switch (action.type) {
         case "REMOVE-TASKS": {
             return {
@@ -76,6 +89,7 @@ export const tasksReducer = (state: TasksStateType, action: GlobalType): TasksSt
             const stateCopy = {...state}
             stateCopy[action.todolistId] = []
             return stateCopy
+
         }
         case "REMOVE-TODO": {
             const stateCopy = {...state}
@@ -101,7 +115,7 @@ export const changeTaskStatusAC = (tasksId: string, isDone: boolean, todolistId:
     return {type: 'CHANGE-TASKS', tasksId, isDone, todolistId}
 }
 
-export const changeTaskTitleAC = (tasksId: string, todolistId: string, title: string): ChangeTaskTitleACType => {
+export const changeTaskTitleAC = (tasksId: string, title: string, todolistId: string): ChangeTaskTitleACType => {
     return {type: 'CHANGE-TITLE-TASKS', tasksId, todolistId, title}
 }
 
