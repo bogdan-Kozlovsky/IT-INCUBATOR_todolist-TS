@@ -1,18 +1,10 @@
 import React from 'react'
+import {Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Button, Grid} from '@material-ui/core'
 import {useFormik} from 'formik'
-import Checkbox from '@mui/material/Checkbox'
-import FormControl from '@mui/material/FormControl'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import FormGroup from '@mui/material/FormGroup'
-import FormLabel from '@mui/material/FormLabel'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
 import {useDispatch, useSelector} from 'react-redux'
 import {loginTC} from './auth-reducer'
 import {AppRootStateType} from '../../app/store'
-import {Navigate} from "react-router-dom";
-import Grid from '@mui/material/Grid'
-
+import { Redirect } from 'react-router-dom'
 
 export const Login = () => {
     const dispatch = useDispatch()
@@ -44,11 +36,11 @@ export const Login = () => {
     })
 
     if (isLoggedIn) {
-        return <Navigate to={"/"}/>
+        return <Redirect to={"/"} />
     }
 
-    // container justify="center"
-    return <Grid >
+
+    return <Grid container justify="center">
         <Grid item xs={4}>
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
