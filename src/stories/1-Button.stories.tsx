@@ -1,5 +1,8 @@
 import React from 'react';
+
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Button } from '@storybook/react/demo';
 
 export default {
