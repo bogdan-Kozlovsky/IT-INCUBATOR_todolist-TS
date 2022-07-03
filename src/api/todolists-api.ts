@@ -1,25 +1,15 @@
 import axios from 'axios'
 
-// const settings = {
-//     withCredentials: true,
-//     headers: {
-//         'API-KEY': '1cdd9f77-c60e-4af5-b194-659e4ebd5d41'
-//     }
-// }
-// const instance = axios.create({
-//     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
-//     ...settings
-// })
-
-const instance = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+const settings = {
     withCredentials: true,
     headers: {
-        'API-KEY': 'edbb6621-0047-4274-8a4c-f1d2a1bf4727',
-    },
+        'API-KEY': '1be3afd1-cb12-4713-953a-273c84cfad9b'
+    }
+}
+const instance = axios.create({
+    baseURL: 'https://social-network.samuraijs.com/api/1.1/',
+    ...settings
 })
-
-
 
 // api
 export const todolistsAPI = {
@@ -83,9 +73,11 @@ export type TodolistType = {
     addedDate: string
     order: number
 }
-    export type ResponseType<D = {}> = {
+export type FieldErrorType={field:string,error:string}
+export type ResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>
+    fieldsErrors?: Array<FieldErrorType>
     data: D
 }
 export enum TaskStatuses {
