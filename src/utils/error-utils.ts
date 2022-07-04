@@ -1,12 +1,8 @@
 import { Dispatch } from 'redux';
 
 import { ResponseType } from 'api/types';
-import {
-  setAppErrorAC,
-  SetAppErrorActionType,
-  setAppStatusAC,
-  SetAppStatusActionType,
-} from 'app/app-reducer';
+import { setAppErrorAC, setAppStatusAC } from 'store/app/slices';
+import { SetAppErrorActionType, SetAppStatusActionType } from 'store/app/types';
 
 export const handleServerAppError = <D>(
   data: ResponseType<D>,

@@ -11,12 +11,12 @@ import {
   TextField,
 } from '@material-ui/core';
 import { FormikHelpers, useFormik } from 'formik';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { AppRootStateType, useAppDispatch } from '../../app/store';
-
-import { loginTC } from './auth-reducer';
+import { useAppSelector } from 'hooks/useSelector';
+import { loginTC } from 'store/auth/asyncThunks';
+import { selectIsLoggedIn } from 'store/auth/selectors';
+import { useAppDispatch } from 'store/store';
 
 type FormValuesType = {
   email: string;
@@ -27,9 +27,7 @@ type FormValuesType = {
 export const Login = () => {
   const dispatch = useAppDispatch();
 
-  const isLoggedIn = useSelector<AppRootStateType, boolean>(
-    state => state.auth.isLoggedIn,
-  );
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   const formik = useFormik({
     validate: values => {

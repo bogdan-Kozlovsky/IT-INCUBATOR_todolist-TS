@@ -8,17 +8,17 @@ import thunkMiddleware from 'redux-thunk';
 import { v1 } from 'uuid';
 
 import { TaskPriorities, TaskStatuses } from 'api/types';
-import { appReducer } from 'app/app-reducer';
-import { AppRootStateType, RootReducerType } from 'app/store';
-import { authReducer } from 'features/Login/auth-reducer';
-import { tasksReducer } from 'features/TodolistsList/tasks-reducer';
-import { todolistsReducer } from 'features/TodolistsList/todolists-reducer';
+import { app } from 'store/app/slices';
+import { auth } from 'store/auth/slices';
+import { AppRootStateType, RootReducerType } from 'store/store';
+import { tasks } from 'store/tasks/slices';
+import { todolists } from 'store/todolists/slices';
 
 const rootReducer: RootReducerType = combineReducers({
-  tasks: tasksReducer,
-  todolists: todolistsReducer,
-  app: appReducer,
-  auth: authReducer,
+  tasks,
+  todolists,
+  app,
+  auth,
 });
 
 const initialGlobalState: AppRootStateType = {

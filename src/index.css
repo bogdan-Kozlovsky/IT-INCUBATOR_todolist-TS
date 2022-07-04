@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.progress{
+  position: fixed;
+  top: 30%;
+  text-align: center;
+  width: 100%;
+}
