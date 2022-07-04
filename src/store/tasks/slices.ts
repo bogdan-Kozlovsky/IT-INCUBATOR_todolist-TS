@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { TaskType } from 'api/types';
-import { fetchTasksTC, removeTaskTC } from 'store/tasks/asyncThunks';
+import { fetchTasksTC } from 'store/tasks/asyncThunks/fetchTasksTC';
+import { removeTaskTC } from 'store/tasks/asyncThunks/removeTaskTC';
 import { addTodolistAC, removeTodolistAC, setTodolistsAC } from 'store/todolists/slices';
 
 const initialState: any = {};

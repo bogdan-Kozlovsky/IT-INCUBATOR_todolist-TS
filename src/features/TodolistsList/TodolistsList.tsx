@@ -1,23 +1,22 @@
 import React, { useCallback, useEffect } from 'react';
 
-import { Grid, Paper } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { Todolist } from './Todolist/Todolist';
 
 import { TaskStatuses } from 'api/types';
-import { AddItemForm } from 'components/AddItemForm/AddItemForm';
 import { useAppSelector } from 'hooks/useSelector';
 import { selectIsLoggedIn } from 'store/auth/selectors';
-import { addTaskTC, removeTaskTC, updateTaskTC } from 'store/tasks/asyncThunks';
+import { addTaskTC } from 'store/tasks/asyncThunks/addTaskTC';
+import { removeTaskTC } from 'store/tasks/asyncThunks/removeTaskTC';
+import { updateTaskTC } from 'store/tasks/asyncThunks/updateTaskTC';
 import { selectTasks } from 'store/tasks/selectors';
-import {
-  addTodolistTC,
-  changeTodolistTitleTC,
-  fetchTodolistsTC,
-  removeTodolistTC,
-} from 'store/todolists/asyncThunks';
+import { changeTodolistTitleTC } from 'store/todolists/asyncThunks/changeTodolistTitleTC';
+import { fetchTodolistsTC } from 'store/todolists/asyncThunks/fetchTodolistsTC';
+import { removeTodolistTC } from 'store/todolists/asyncThunks/removeTodolistTC';
 import { selectTodolists } from 'store/todolists/selectors';
 import { changeTodolistFilterAC } from 'store/todolists/slices';
 import { FilterValuesType } from 'store/todolists/types';
@@ -67,13 +66,6 @@ export const TodolistsList: React.FC<PropsType> = ({ demo = false }) => {
     dispatch(changeTodolistTitleTC(id, title));
   }, []);
 
-  const addTodolist = useCallback(
-    (title: string) => {
-      dispatch(addTodolistTC(title));
-    },
-    [dispatch],
-  );
-
   useEffect(() => {
     if (demo || !isLoggedIn) {
       return;
@@ -86,34 +78,29 @@ export const TodolistsList: React.FC<PropsType> = ({ demo = false }) => {
   }
 
   return (
-    <>
-      <Grid container style={{ padding: '20px' }}>
-        <AddItemForm addItem={addTodolist} />
-      </Grid>
-      <Grid container spacing={3}>
-        {todolists.map(tl => {
-          const allTodolistTasks = tasks[tl.id];
+    <Grid container spacing={3}>
+      {todolists.map(tl => {
+        const allTodolistTasks = tasks[tl.id];
 
-          return (
-            <Grid item key={tl.id}>
-              <Paper style={{ padding: '10px' }}>
-                <Todolist
-                  todolist={tl}
-                  tasks={allTodolistTasks}
-                  removeTask={removeTask}
-                  changeFilter={changeFilter}
-                  addTask={addTask}
-                  changeTaskStatus={changeStatus}
-                  removeTodolist={removeTodolist}
-                  changeTaskTitle={changeTaskTitle}
-                  changeTodolistTitle={changeTodolistTitle}
-                  demo={demo}
-                />
-              </Paper>
-            </Grid>
-          );
-        })}
-      </Grid>
-    </>
+        return (
+          <Grid key={tl.id}>
+            <Paper style={{ padding: '10px' }}>
+              <Todolist
+                todolist={tl}
+                tasks={allTodolistTasks}
+                removeTask={removeTask}
+                changeFilter={changeFilter}
+                addTask={addTask}
+                changeTaskStatus={changeStatus}
+                removeTodolist={removeTodolist}
+                changeTaskTitle={changeTaskTitle}
+                changeTodolistTitle={changeTodolistTitle}
+                demo={demo}
+              />
+            </Paper>
+          </Grid>
+        );
+      })}
+    </Grid>
   );
 };

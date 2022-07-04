@@ -1,20 +1,18 @@
 import React from 'react';
 
-import {
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-  Grid,
-  TextField,
-} from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormLabel from '@material-ui/core/FormLabel';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import { FormikHelpers, useFormik } from 'formik';
 import { Redirect } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks/useSelector';
-import { loginTC } from 'store/auth/asyncThunks';
+import { loginTC } from 'store/auth/asyncThunks/loginTC';
 import { selectIsLoggedIn } from 'store/auth/selectors';
 import { useAppDispatch } from 'store/store';
 
@@ -58,7 +56,6 @@ export const Login = () => {
           const error = action.payload?.fieldsErrors[0];
 
           formikHelpers.setFieldError(error.field, error.error);
-        } else {
         }
       }
     },

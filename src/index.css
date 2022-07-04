@@ -18,3 +18,12 @@ code {
   text-align: center;
   width: 100%;
 }
+
+.appBar{
+  position: relative;
+}
+
+.linearProgress{
+  position: absolute;
+  width: 100%;
+}

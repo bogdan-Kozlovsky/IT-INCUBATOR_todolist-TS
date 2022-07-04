@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { loginTC } from 'store/auth/asyncThunks';
+import { loginTC } from 'store/auth/asyncThunks/loginTC';
 
 const slice = createSlice({
   name: 'auth',
