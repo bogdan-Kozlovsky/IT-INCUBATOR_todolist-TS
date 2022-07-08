@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
 
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { Delete } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
@@ -10,6 +9,8 @@ import { Task } from './Task/Task';
 import { TaskStatuses } from 'api/types';
 import { AddItemForm } from 'components/AddItemForm/AddItemForm';
 import { EditableSpan } from 'components/EditableSpan/EditableSpan';
+import { Navigate } from 'features/TodolistsList/Navigate/Navigate';
+import s from 'features/TodolistsList/style.module.css';
 import { TodolistPropsType } from 'features/TodolistsList/Todolist/types';
 import { fetchTasksTC } from 'store/tasks/asyncThunks/fetchTasksTC';
 
@@ -47,21 +48,6 @@ export const Todolist = React.memo(function (props: TodolistPropsType) {
     [todolist.id, changeTodolistTitle],
   );
 
-  const onAllClickHandler = useCallback(
-    () => changeFilter('all', todolist.id),
-    [todolist.id, changeFilter],
-  );
-
-  const onActiveClickHandler = useCallback(
-    () => changeFilter('active', todolist.id),
-    [todolist.id, changeFilter],
-  );
-
-  const onCompletedClickHandler = useCallback(
-    () => changeFilter('completed', todolist.id),
-    [todolist.id, changeFilter],
-  );
-
   let tasksForTodolist = tasks;
 
   if (todolist.filter === 'active') {
@@ -80,7 +66,7 @@ export const Todolist = React.memo(function (props: TodolistPropsType) {
 
   return (
     <div>
-      <h3>
+      <h3 className={s.title}>
         <EditableSpan value={todolist.title} onChange={changeTodolistTitleValue} />
         <IconButton
           onClick={onRemoveTodolistClick}
@@ -106,27 +92,7 @@ export const Todolist = React.memo(function (props: TodolistPropsType) {
         ))}
       </div>
       <div style={{ paddingTop: '10px' }}>
-        <Button
-          variant={todolist.filter === 'all' ? 'outlined' : 'text'}
-          onClick={onAllClickHandler}
-          color="default"
-        >
-          All
-        </Button>
-        <Button
-          variant={todolist.filter === 'active' ? 'outlined' : 'text'}
-          onClick={onActiveClickHandler}
-          color="primary"
-        >
-          Active
-        </Button>
-        <Button
-          variant={todolist.filter === 'completed' ? 'outlined' : 'text'}
-          onClick={onCompletedClickHandler}
-          color="secondary"
-        >
-          Completed
-        </Button>
+        <Navigate todolist={todolist} changeFilter={changeFilter} />
       </div>
     </div>
   );

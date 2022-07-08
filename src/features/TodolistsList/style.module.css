@@ -1,0 +1,23 @@
+.wrapper {
+    min-height: 500px;
+    margin: 0 -17px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block {
+    padding: 20px;
+    transition: all .3s ease;
+    margin-bottom: 30px;
+}
+
+.block:hover {
+    box-shadow: 0 0 15px rgb(0 0 0 / 50%);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

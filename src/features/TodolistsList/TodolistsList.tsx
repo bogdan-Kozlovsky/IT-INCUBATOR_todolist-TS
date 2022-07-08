@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 import { Todolist } from './Todolist/Todolist';
 
 import { TaskStatuses } from 'api/types';
+import s from 'features/TodolistsList/style.module.css';
 import { useAppSelector } from 'hooks/useSelector';
 import { selectIsLoggedIn } from 'store/auth/selectors';
 import { addTaskTC } from 'store/tasks/asyncThunks/addTaskTC';
@@ -78,13 +79,13 @@ export const TodolistsList: React.FC<PropsType> = ({ demo = false }) => {
   }
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} className={s.wrapper}>
       {todolists.map(tl => {
         const allTodolistTasks = tasks[tl.id];
 
         return (
           <Grid key={tl.id}>
-            <Paper style={{ padding: '10px' }}>
+            <Paper className={s.block}>
               <Todolist
                 todolist={tl}
                 tasks={allTodolistTasks}

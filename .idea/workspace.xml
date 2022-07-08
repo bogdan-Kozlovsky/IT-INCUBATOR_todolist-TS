@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="666d62e8-5b76-4bcf-a35e-bdfcd35aae0a" name="Changes" comment="made division by folders business logic">
-      <change afterPath="$PROJECT_DIR$/src/components/Header/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/TodolistsList/Todolist/Task/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/TodolistsList/Todolist/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/app/asyncThunks/initializeAppTC.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/auth/asyncThunks/loginTC.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/auth/asyncThunks/logoutTC.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/todolists/asyncThunks/addTodolistTC.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/todolists/asyncThunks/changeTodolistTitleTC.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/todolists/asyncThunks/fetchTodolistsTC.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/todolists/asyncThunks/removeTodolistTC.ts" afterDir="false" />
+    <list default="true" id="666d62e8-5b76-4bcf-a35e-bdfcd35aae0a" name="Changes" comment="moved async thunk over separate files, refactor code.">
+      <change afterPath="$PROJECT_DIR$/src/components/AddItemForm/style.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Header/style.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/TodolistsList/Navigate/Navigate.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/TodolistsList/Navigate/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/TodolistsList/style.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EditableSpan/EditableSpan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditableSpan/EditableSpan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddItemForm/AddItemForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddItemForm/AddItemForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/TodolistsList/Todolist/Task/Task.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/TodolistsList/Todolist/Task/Task.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/TodolistsList/Todolist/Todolist.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/TodolistsList/Todolist/Todolist.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/TodolistsList/TodolistsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/TodolistsList/TodolistsList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/app/asyncThunks.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/auth/asyncThunks.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/auth/slices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/slices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/tasks/asyncThunks.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/tasks/slices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/tasks/slices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/todolists/asyncThunks.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +43,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CodeWars" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../pizza" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -212,7 +199,14 @@
       <workItem from="1656852052261" duration="1207000" />
       <workItem from="1656866065207" duration="8986000" />
       <workItem from="1656923768241" duration="1892000" />
-      <workItem from="1656946960941" duration="8331000" />
+      <workItem from="1656946960941" duration="9264000" />
+      <workItem from="1657041596382" duration="2443000" />
+      <workItem from="1657129719696" duration="2268000" />
+      <workItem from="1657215696849" duration="1487000" />
+      <workItem from="1657223714850" duration="1000" />
+      <workItem from="1657290116740" duration="710000" />
+      <workItem from="1657295362564" duration="20000" />
+      <workItem from="1657296750241" duration="4562000" />
     </task>
     <task id="LOCAL-00001" summary="code refactoring start">
       <created>1656848777576</created>
@@ -235,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656952005834</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="moved async thunk over separate files, refactor code.">
+      <created>1656958413892</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656958413892</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +257,8 @@
     <MESSAGE value="code refactoring start" />
     <MESSAGE value="folder refactoring api" />
     <MESSAGE value="made division by folders business logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="made division by folders business logic" />
+    <MESSAGE value="moved async thunk over separate files, refactor code." />
+    <option name="LAST_COMMIT_MESSAGE" value="moved async thunk over separate files, refactor code." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

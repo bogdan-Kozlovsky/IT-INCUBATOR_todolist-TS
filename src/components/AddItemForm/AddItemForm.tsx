@@ -3,6 +3,8 @@ import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { IconButton, TextField } from '@material-ui/core';
 import { AddBox } from '@material-ui/icons';
 
+import s from 'components/AddItemForm/style.module.css';
+
 type AddItemFormPropsType = {
   addItem: (title: string) => void;
   disabled?: boolean;
@@ -40,6 +42,7 @@ export const AddItemForm = React.memo(function ({
 
   return (
     <div>
+      <span className={s.span}>Add new todolist:</span>
       <TextField
         variant="outlined"
         disabled={disabled}
